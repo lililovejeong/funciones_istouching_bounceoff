@@ -9,6 +9,9 @@ function setup() {
   movingRect.shapeColor = "#b0e892";
   movingRect.debug = true;
 
+  gameObject4 = createSprite(800, 50, 50, 50);
+  gameObject4.shapeColor = "white";
+
 }
 
 function draw() {
