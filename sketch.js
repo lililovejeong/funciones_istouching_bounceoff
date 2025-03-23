@@ -9,8 +9,18 @@ function setup() {
   movingRect.shapeColor = "#b0e892";
   movingRect.debug = true;
 
+  gameObject1 = createSprite(100, 100, 50, 50);
+  gameObject1.shapeColor = "green";
+
+  gameObject3 = createSprite(0, 800, 50, 50);
+  gameObject3.shapeColor = "pink";
   gameObject4 = createSprite(800, 50, 50, 50);
   gameObject4.shapeColor = "white";
+
+  gameObject3.velocityX = +5;
+  gameObject3.velocityY = -5;
+  gameObject4.velocityX = -5;
+  gameObject4.velocityY = +5;
 
 }
 
@@ -18,8 +28,6 @@ function draw() {
   background(0,0,0);
   movingRect.x = World.mouseX;
   movingRect.y = World.mouseY;
-
-  //bounceOff()
 
   if(isTouching(movingRect, fixedRect)){
     movingRect.shapeColor = "blue";
@@ -29,33 +37,15 @@ function draw() {
     movingRect.shapeColor = "#b0e892";
   }
 
-  if(isTouching(movingRect, gameObject4)){
+  if(isTouching(movingRect, gameObject1)){
     movingRect.shapeColor = "blue";
-    gameObject4.shapeColor = "red";
+    gameObject1.shapeColor = "red";
   } else {
-    gameObject4.shapeColor = "white";
+    gameObject1.shapeColor = "green";
     movingRect.shapeColor = "#b0e892";
   }
 
+  bounceOff(gameObject3, gameObject4);
+
   drawSprites();
-}
-
-function bounceOff(){
-
-}
-
-function isTouching(object1, object2){
-  if(object1.x - object2.x < object2.width/2 + object1.width/2
-    && object2.x - object1.x < object2.width/2 + object1.width/2
-    && object1.y - object2.y < object2.height/2 + object1.height/2
-    && object2.y - object1.y < object2.height/2 + object1.height/2
-  ){
-    /*movingRect.shapeColor = "red";
-    fixedRect.shapeColor = "red";*/
-    return true;
-  } else {
-    /*fixedRect.shapeColor = "#027c68";
-    movingRect.shapeColor = "#b0e892";*/
-    return false;
-  }
 }
